@@ -2,6 +2,7 @@ function Block(id,domE) {
     this.id = id
     this.domE = domE
     this.showing = true;
+    this.playing = false;
 
     this.returnId = function() {
         return this.id;
@@ -17,15 +18,13 @@ function Block(id,domE) {
     
     this.domE.addEventListener("click",()=> {
         if (this.showing) {
-
-
-
-
-
-
             // Efectos visuales
             this.domE.classList.toggle("clicky")
             setTimeout(()=> this.domE.classList.remove("clicky"),300)
+        }
+
+        if (this.playing) {
+            verif(this.id);
         }
     })
 }

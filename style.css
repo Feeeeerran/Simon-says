@@ -1,232 +1,261 @@
-    @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
 
-    /* ~~~~~~~~~~~  VISUAL  ~~~~~~~~~~~~ */
-    html, body {
-        background-color: #051214;
-        margin: 0;
-        padding: 0;
-        height: 90vh;
+/* ~~~~~~~~~~~  VISUAL  ~~~~~~~~~~~~ */
+html, body {
+    background-color: #051214;
+    margin: 0;
+    padding: 0;
+    height: 90vh;
+}
+
+
+main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+/* ////////////////////////// PANELS AND BLOCKS ////////////////////////// */
+
+/* ~~~~~~~~~~~~~~~~~~~ LEFT PANEL ~~~~~~~~~~~~~~~~~~~ */
+.left-panel {
+    width: 30%;
+    height: 100%;
+    margin-left: 10%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    /* background-color: #000; */
+}
+
+h1 {
+    margin: 10% 5%;
+    /* text-align: center; */
+    
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 5vw;
+    color: #FF865E;
+}
+
+h1::after {
+    content:"by Ferran";
+    display: block;
+
+    font-family: 'Nova Square', cursive;
+    font-size: 2vw;
+    color:#FFF;
+}
+
+button {
+    height: 10%;
+    margin:0 5%;
+    cursor:pointer;
+    border:none;
+    background-color: #297F87;
+    
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 1.5vw;
+    color:#FFF;
+}
+
+.score {
+    visibility: hidden;
+    height: 5%;
+    width: 50%;
+    margin:10% 5%;
+    cursor: crosshair;
+
+    display: flex;
+    align-items: center;
+}
+
+.score p {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 1.5vw;
+    color:#fff;
+
+    animation: scoreColors 1s infinite ease-in-out;
+}
+
+@keyframes scoreColors {
+    0% {color: #00ffb8}
+    50% {color:#3d937b}
+    100% {color: #00ffb8}
+}
+
+
+.checkIcon, .crossIcon{
+    opacity: 0;
+    position: relative;
+    top:-23%;
+    left:105%;
+    stroke:#35ca74;
+    transition: opacity 0.5s;
+}
+
+.crossIcon {
+    opacity: 0;
+    stroke: #d01c67;
+    top: -28%;
+}
+
+.iconIn {
+    animation: showCheck 0.5s forwards;
+}
+
+
+
+@keyframes showCheck {
+    0% {
+        transform: scale(0);
     }
-
-
-    main {
-        height: 100%;
-        width: 100%;
-        display: flex;
+    100% {
+        opacity: 1;
+        transform: scale(1.5);
     }
-    /*~~~~~~~~~~~~ PANELS AND BLOCKS ~~~~~~~~~~~~ */
+}
 
-    /* LEFT */
-    .left-panel {
-        width: 30%;
-        height: 100%;
-        margin-left: 10%;
 
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+/* ~~~~~~~~~~~~~~~~~~~ RIGTH PANEL  ~~~~~~~~~~~~~~~~~~~ */
+.right-panel {
+    /* background-color: #000000; */
+    width: 70%;
+    height: 100%;
+    /* margin: 10%; */
 
-        /* background-color: #000; */
-    }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-    h1 {
-        margin: 10% 5%;
-        /* text-align: center; */
-        
-        font-family: 'Libre Franklin', sans-serif;
-        font-size: 5vw;
-        color: #FF865E;
-    }
+.container {
+    width: 35vw;
+    height: 35vw;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);
+}
 
-    h1::after {
-        content:"by Ferran";
-        display: block;
+/* BLOCKS */
+.container :nth-child(1) {
+    background-color:#A2D2FF;
+}
+.container :nth-child(2) {
+    background-color: #2FDD92;
+}
+.container :nth-child(3) {
+    background-color: #FFB740;
+}
+.container :nth-child(4) {
+    background-color:#FF865E;
+}
+.container :nth-child(5) {
+    background-color: #FFF;
+}
+.container :nth-child(6) {
+    background-color: #FEE440;
+}
+.container :nth-child(7) {
+    background-color: #297F87;
+}
+.container :nth-child(8) {
+    background-color: #CAB8FF;
+}
+.container :nth-child(9) {
+    background-color: #FFADAD;
+}
 
-        font-family: 'Nova Square', cursive;
-        font-size: 2vw;
-        color:#FFF;
-    }
+.block {
+    cursor: pointer;
+    filter: grayscale(0) !important;
+    transition: transform 0.1s, border 0.3s;
+}
 
-    button {
-        height: 10%;
-        margin:0 5%;
-        cursor:pointer;
-        border:none;
-        background-color: #297F87;
-        
-        font-family: 'Libre Franklin', sans-serif;
-        font-size: 1.5vw;
-        color:#FFF;
-    }
 
-    svg {
+    /* ~~~~~~~~~~~ ALERT ~~~~~~~~~~ */
+.alert {
+    visibility: hidden;
+    position: relative;
+    top: 5%;
+    margin: 0;
+    background-color: #FFF;
+    height: 5vh;
+    width: 14vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alert p {
+    opacity: 0;
+    position: absolute;
+    margin: 0;
+    text-align: center;
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 2vh;
+    font-weight: bold;
+}
+
+.alertIn {
+    animation: softDown 0.8s forwards ease-out;
+}
+
+.alertOut {
+    animation: fadeOut 0.8s forwards;
+}
+
+@keyframes softDown {
+    0% {
         opacity: 0;
-        position: relative;
-        top:-8%;
-        left:105%;
-        stroke:#35ca74;
-        transition: opacity 0.5s;
+        transform: translate(0,-2vh);
     }
 
-    .checkIn {
-        animation: showCheck 0.5s forwards;
+    100% {
+        opacity: 1;
+        transform: translate(0);
+        visibility: visible;
     }
+}
 
-
-
-    @keyframes showCheck {
-        0% {
-            transform: scale(0);
-        }
-        100% {
-            opacity: 1;
-            transform: scale(1.5);
-        }
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        visibility: visible;
     }
-
-
-
-
-    /* RIGTH */
-    .right-panel {
-        /* background-color: #000000; */
-        width: 70%;
-        height: 100%;
-        /* margin: 10%; */
-
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+    100% {
+        opacity: 0;
     }
+}
 
-    .container {
-        width: 35vw;
-        height: 35vw;
-        display: grid;
-        grid-template-columns: repeat(3,1fr);
-        grid-template-rows: repeat(3,1fr);
-    }
+    /* CAMBIOS VISUALES + ANIMACIONES */
+.hover:hover {
+    /* opacity: 0.8; */
+    /* border:5px double #000; */
+    transform:scale(0.95)
+}
 
-    /* BLOCKS */
-    .container :nth-child(1) {
-        background-color:#A2D2FF;
-    }
-    .container :nth-child(2) {
-        background-color: #2FDD92;
-    }
-    .container :nth-child(3) {
-        background-color: #FFB740;
-    }
-    .container :nth-child(4) {
-        background-color:#FF865E;
-    }
-    .container :nth-child(5) {
-        background-color: #FFF;
-    }
-    .container :nth-child(6) {
-        background-color: #FEE440;
-    }
-    .container :nth-child(7) {
-        background-color: #297F87;
-    }
-    .container :nth-child(8) {
-        background-color: #CAB8FF;
-    }
-    .container :nth-child(9) {
-        background-color: #FFADAD;
-    }
+.clicky {
+    /* border:4px #66645c3d inset; */
+    transform:scale(0.92) !important;
+    opacity:0.8 ;
+}
 
-    .block {
-        cursor: pointer;
-        filter: grayscale(0) !important;
-        transition: transform 0.1s, border 0.3s;
-    }
+.show {
+    position: relative;
+    z-index: 100;
+    animation: size 0.2s alternate;
+    filter: grayscale(0);
+}
 
-    .block:hover {
-        /* opacity: 0.8; */
-        /* border:5px double #000; */
-        transform:scale(0.95)
-    }
+@keyframes size {
+    50% {transform: scale(1.2)}
+}
 
-    /* ALERT TURNOS */
-    .tu-turno {
-        visibility: hidden;
-        position: relative;
-        top: 5%;
-        margin: 0;
-        background-color: #FFF;
-        height: 5vh;
-        width: 12vw;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .tu-turno p {
-        margin: 0;
-        text-align: center;
-        font-family: 'Libre Franklin', sans-serif;
-        font-size: 2vh;
-        font-weight: bold;
-    }
-
-    .tuTurno-animIn {
-        animation: softDown 0.8s forwards ease-out;
-    }
-
-    .tuTurno-animOut {
-        animation: fadeOut 0.8s forwards;
-    }
-
-    @keyframes softDown {
-        0% {
-            opacity: 0;
-            transform: translate(0,-2vh);
-        }
-
-        100% {
-            opacity: 1;
-            transform: translate(0);
-            visibility: visible;
-        }
-    }
-
-    @keyframes fadeOut {
-        0% {
-            opacity: 1;
-            visibility: visible;
-        }
-        100% {
-            opacity: 0;
-        }
-    }
-
-    /* Cambios visuales + animaciones */
-    .clicky {
-        /* border:4px #66645c3d inset; */
-        transform:scale(0.92) !important;
-        opacity:0.8 ;
-    }
-
-    .show {
-        position: relative;
-        z-index: 100;
-        animation: size 0.2s alternate;
-        filter: grayscale(0);
-    }
-
-    @keyframes size {
-        50% {transform: scale(1.2)}
-    }
-
-    .button-blocked {
-        cursor:not-allowed;
-        filter: grayscale(0.5);
-    }
-
-
-    /* .grayscale {
-    } */
+.button-blocked {
+    cursor:not-allowed;
+    filter: grayscale(0.5);
+}

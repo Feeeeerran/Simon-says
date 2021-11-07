@@ -4,13 +4,17 @@ console.log("Hola mundo")
 let grid = [];
 let sec = [];
 var play;
+var score = 0;
 
 // DOM
 let blocks = document.querySelectorAll(".block");
 let buttonPlay = document.querySelector("button");
-let turnoPlayer = document.querySelector(".tu-turno");
+let alerts = document.querySelector(".alert");
+let alertMsg = document.querySelectorAll(".alert p")
 let containerBlock = document.querySelector(".container");
-let checkIcon = document.querySelector(".icon")
+let icons = document.querySelectorAll(".icon");
+let scoreD = document.querySelector(".score");
+let scoreP = document.querySelector(".score p");
 
 // Definiendo que es cada bloque
 var i = 0;
@@ -24,8 +28,10 @@ for (block of blocks) {
 // El botón let's go me inicia el juego 
 buttonPlay.addEventListener("click", sSays)
 function sSays() {
-    turnoPlayer.classList.remove("tuTurno-animOut");
-    checkIcon.classList.remove("checkIn")
+    showAlert(false,1);
+    icons[0].classList.remove("iconIn")
+    icons[1].classList.remove("iconIn")
+
 
     // Una vez mostrada la secuencia llamamos al turno del jugador
     // Para eso desactivamos el eventListener del let's go
@@ -41,8 +47,7 @@ function sSays() {
 //  - Si ha sido todo correcto --> cuando hago click bien al último sale el cartel todo bien --> darle al let's go
 //  - Si se falla al menos una sola vez --> cartel de equivocado + volver a jugar
 function verif(select) {
-    turnoPlayer.classList.remove("tuTurno-animIn");
-    turnoPlayer.classList.add("tuTurno-animOut");
+    showAlert(false,0);
 
     if (select == sec[play] && play == sec.length-1) {
         // Todo perfecto --> volvemos a activar la secuencia
@@ -52,23 +57,39 @@ function verif(select) {
         })
 
         buttonPlay.classList.remove("button-blocked")
-        checkIcon.classList.add("checkIn")
-
+        icons[0].classList.add("iconIn")
+        
+        // Sumando al contador de score
+        score++
 
         // Volvemos a cargar el eventListener
         buttonPlay.addEventListener("click", sSays)
 
+    } else if(select != sec[play]) {
+        // Equivocado --> resetear juego
+        showAlert(true,1);
+        buttonPlay.classList.remove("button-blocked")
+        icons[1].classList.add("iconIn")
 
-    } else if (select == sec[play] && play < sec.length) {
-        // Opción buena --> sigue jugando --> añadir alguna animación
-    } else {
-        
+        // Mostrando el score final
+        scoreD.style.visibility = "visible"
+        scoreP.innerHTML = `MAX SCORE <br>  ${score}`
+
+
+        reset();
+
+
     }
 
     play++;
 }
 
+// Función para resetear el juego --> hay que dejarlo como cuando inicia
+function reset() {
+    buttonPlay.addEventListener("click", sSays)
+    sec = [];
 
+}
 
 
 
@@ -84,8 +105,6 @@ function secuencia(arrSec) {
     } else {
         arrSec.push(rand(9));
     }
-    console.log(arrSec)
-
 
     // MUESTRO LA SECUENCIA
     // Usamos la función para bloquear botones
@@ -104,7 +123,7 @@ function showSec(it,array) {
     } else {
         // Una vez finaliza la iteración recursiva muestro el cartel del turno y desbloqueo los botones
         toggleClick(true)
-        turnoPlayer.classList.add("tuTurno-animIn")
+        showAlert(true,0)
 
         // Finaliza la secuencia ahora el usuario puede jugar
         grid.forEach((e) => {
@@ -116,7 +135,20 @@ function showSec(it,array) {
     }
 }
 
-
+// Función para mostrar y reatraer los alert
+function showAlert(bool,opc) {
+    // bool me indica si mostrar o retraer el alert
+    // la opción me muestra si es el primer o segundo mensaje
+    if (bool) {
+        alerts.classList.add("alertIn");
+        alertMsg[opc].style.opacity = 1;            
+        alerts.classList.remove("alertOut")
+    } else {
+        // alerts.classList.add("alertOut");
+        alertMsg[opc].style.opacity = 0;
+        alerts.classList.remove("alertIn")
+    }
+}
 
 
 // Función para bloquear botones tanto del let's go como los bloques
@@ -125,6 +157,7 @@ function toggleClick(bool) {
         grid.forEach((e) => {
             e.showing = bool;
             e.domE.classList.remove("button-blocked")
+            e.domE.classList.add("hover")
         });
 
         buttonPlay.disabled = !bool;
@@ -133,6 +166,8 @@ function toggleClick(bool) {
         grid.forEach((e) => {
             e.showing = bool;
             e.domE.classList.add("button-blocked")
+            e.domE.classList.remove("hover")
+
         });
 
         buttonPlay.disabled = !bool;

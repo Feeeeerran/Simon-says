@@ -14,12 +14,14 @@ function Block(id,domE) {
         setTimeout(()=> this.domE.classList.remove("show"),300)
     }
 
+    
 
     
     this.domE.addEventListener("click",()=> {
         if (this.showing) {
             // Efectos visuales
-            this.domE.classList.toggle("clicky")
+            
+            this.domE.classList.add("clicky")
             setTimeout(()=> this.domE.classList.remove("clicky"),300)
         }
 

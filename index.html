@@ -13,33 +13,40 @@
 </head>
 <body>
     <main>
+
+        <!-- PANEL INFORMATIVO . . . . "INFORMATIVO" -->
         <section class="left-panel">
             <h1>SIMON SAYS</h1>
             <button>LET'S GO</button>
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="44" height="44" viewBox="0 0 24 24" stroke-width="2" stroke="#00b341" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <div class="score">
+                <p>MAX SCORE </p>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="checkIcon icon icon-tabler icon-tabler-check" width="44" height="44" viewBox="0 0 24 24" stroke-width="2" stroke="#00b341" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <path d="M5 12l5 5l10 -10" />
             </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="44" height="44" viewBox="0 0 24 24" stroke-width="2" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" class="crossIcon icon icon-tabler icon-tabler-x" width="44" height="44" viewBox="0 0 24 24" stroke-width="2" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <line x1="18" y1="6" x2="6" y2="18" />
                 <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
         </section>
+        <!-- PANEL DE LOS BLOQUES + ALERTS -->
         <section class="right-panel">
             <div class="container">
-                <div class="block"></div>
-                <div class="block"></div>
-                <div class="block"></div>
-                <div class="block"></div>
-                <div class="block"></div>
-                <div class="block"></div>
-                <div class="block"></div>
-                <div class="block"></div>
-                <div class="block"></div>
+                <div class="block hover"></div>
+                <div class="block hover"></div>
+                <div class="block hover"></div>
+                <div class="block hover"></div>
+                <div class="block hover"></div>
+                <div class="block hover"></div>
+                <div class="block hover"></div>
+                <div class="block hover"></div>
+                <div class="block hover"></div>
             </div>
-            <div class="tu-turno">
+            <div class="alert">
                 <p>Tu turno</p>
+                <p>Intentalo de nuevo</p>
             </div>
         </section>
         
